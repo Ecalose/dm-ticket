@@ -18,7 +18,7 @@
 
 ## 使用说明
 
-- 下载docker-compose配置文件: `wget https://github.com/ClassmateLin/dm-ticket/releases/download/v0.1.2/dm-ticket.zip`
+- 下载docker-compose配置文件: `wget https://github.com/ClassmateLin/dm-ticket/releases/download/v0.1.3/dm-ticket.zip`
 - 解压zip: `unzip dm-ticket.zip && cd dm-ticket`
 - 运行容器: `docker-compose up -d`
 - 修改配置: `vim config/config.yaml`, 配置项在config/config.yaml中有详细注释。
@@ -36,6 +36,36 @@
 - 扫码登录: `docker exec -it dm-ticket dm-login`
 
 
+## 学习项目
+
+[Rust官网](https://www.rust-lang.org/)
+[Rust字节镜像源](https://rsproxy.cn/)
+[Rust语言圣经](https://course.rs/about-book.html)
+[Rust中文社区](https://rustcc.cn/)
+[Rust环境安装教程](https://course.rs/first-try/installation.html)
+
+** 请确保您已成功安装Rust **
+
+1. 先使用`docker-compose up -d`启动token-server, `docker-compose.yml`如下:
+```
+version: "3"
+  service:
+    token-server:
+      image: classmatelin/alitoken-server:v0.1.1
+      restart: always
+      container_name: token-server
+      environment:
+        RUST_LOG: "info"
+      ports:
+        - "8080:8080"
+```
+
+2. 获取项目: `git clone https://github.com/ClassmateLin/dm-ticket.git`
+
+3. 复制配置: `cd dm-ticket && cp config.yaml.example config.yaml`
+
+4. 运行项目: `cargo run --bin dm-ticket`
+
     
 ## 常见问题
 
@@ -46,7 +76,7 @@
 - docker/docker-compose安装使用问题，请善用搜索引擎, 自行搜索解决方案。
 - 是否支持多账号, v0.1.0版本是支持多账号的。后续可能取消。要实现多账号支持, 开启多个docker容器也可以支持。
 - 频繁尝试运行程序出现,  ["RGV587_ERROR::SM::哎哟喂,被挤爆啦,请稍后重试!"]。请重新登陆。
-- 仅支持[H5端](https://m.daima.cn)可以购买的票。
+- 仅支持[H5端](https://m.damai.cn)可以购买的票。
 
 
 ## 其他说明
